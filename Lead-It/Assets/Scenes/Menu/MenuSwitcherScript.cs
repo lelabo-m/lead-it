@@ -10,7 +10,7 @@ public class MenuSwitcherScript : MonoBehaviour
 
     public void ShowSetupGame()
     {
-        NGUITools.SetActive(MainMenu, false);
+        Application.LoadLevel(2);
     }
 
     public void ShowSettings()

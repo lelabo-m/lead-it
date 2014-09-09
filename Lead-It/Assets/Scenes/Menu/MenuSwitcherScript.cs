@@ -8,6 +8,13 @@ public class MenuSwitcherScript : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject CreditsMenu;
 
+    public void Start()
+    {
+        NGUITools.SetActive(SetupGameMenu, false);
+        NGUITools.SetActive(SettingsMenu, false);
+        NGUITools.SetActive(CreditsMenu, false);
+    }
+
     public void ShowSetupGame()
     {
         Application.LoadLevel(2);

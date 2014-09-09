@@ -21,5 +21,6 @@ public class MenuSwitcherScript : MonoBehaviour
     public void ShowCredits()
     {
         NGUITools.SetActive(MainMenu, false);
+		NGUITools.SetActive(CreditsMenu, true);
     }
 }

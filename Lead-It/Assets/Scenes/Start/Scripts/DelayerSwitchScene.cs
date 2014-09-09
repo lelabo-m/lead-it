@@ -8,7 +8,7 @@ public class DelayerSwitchScene : MonoBehaviour
     void Update()
     {
         SecondsOfDelay -= Time.deltaTime;
-        if (SecondsOfDelay < 0)
-            Application.LoadLevel("game_menu");
+        if (SecondsOfDelay < 0.0f)
+            Application.LoadLevel(1);
     }
 }

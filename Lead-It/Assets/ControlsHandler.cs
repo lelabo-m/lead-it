@@ -34,11 +34,6 @@ public class ControlsHandler : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
-
     public void SetAllValues(Dictionary<string, uint> taxesValues
                             , Dictionary<string, uint> aidValues)
     {
@@ -51,7 +46,10 @@ public class ControlsHandler : MonoBehaviour
         string val = PopupListAid.GetComponent<UIPopupList>().value;
 
         if (AidValues[val] != null)
-            AidSlider.GetComponent<UISlider>().value = AidValues[val];
+        {
+            if (AidSlider.GetComponent<UISlider>() != null)
+                AidSlider.GetComponent<UISlider>().value = AidValues[val];
+        }
     }
 
     public void SliderAidChanged()
@@ -66,7 +64,10 @@ public class ControlsHandler : MonoBehaviour
         string val = PopupListTaxes.GetComponent<UIPopupList>().value;
 
         if (TaxesValues[val] != null)
-        TaxesSlider.GetComponent<UISlider>().value = TaxesValues[val];
+        {
+            if (TaxesSlider.GetComponent<UISlider>() != null)
+                TaxesSlider.GetComponent<UISlider>().value = TaxesValues[val];
+        }
     }
 
     public void SliderTaxesChanged()

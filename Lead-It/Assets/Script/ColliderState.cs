@@ -3,9 +3,6 @@ using System.Collections;
 
 public class ColliderState : MonoBehaviour {
 
-    Renderer renderer;
-    ///GameObject scriptTweenColor;
-
 	// Use this for initialization
 	void Start () {
         renderer = GetComponent<Renderer>();
@@ -21,13 +18,10 @@ public class ColliderState : MonoBehaviour {
         Collider2D[] col = Physics2D.OverlapPointAll(vect);
         if (Input.GetMouseButtonDown(0))
         {
-            //gameObject.animation.Play("")
-            if (col.Length > 0)
-                foreach(Collider2D c in col)
-                {
-                    Debug.Log("Collided with " + c.collider2D.gameObject.name);
-                    TweenColor.Begin(c.collider2D.gameObject, 0.5f, Color.grey);
-                }
+            if (col.Length == 1 && col[0].collider2D.gameObject.name == gameObject.name)
+            {
+                Debug.Log("Collided with : " + gameObject.name);
+            }
         }
 	}
 

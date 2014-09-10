@@ -6,18 +6,26 @@ using System.Collections;
 public class backgroundvideo : MonoBehaviour {
 	#if UNITY_EDITOR
 		public MovieTexture movie;
+		public GameObject font;
 	#endif
 
 	// Use this for initialization
 	void Start () {
 		#if UNITY_EDITOR
+		try
+		{
 			renderer.material.mainTexture = movie as MovieTexture;
 			audio.clip = movie.audioClip;
 			movie.loop = true;
 			movie.Play ();
 			audio.Play ();
+		}
+		catch (UnityException e)
+		{
+			font.renderer.enabled = true;
+		}
 		#else
-			Handheld.PlayFullScreenMovie ("StreamingAssests/gen-lead.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
+		Handheld.PlayFullScreenMovie ("gen-lead.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
 		#endif
 	}
 	

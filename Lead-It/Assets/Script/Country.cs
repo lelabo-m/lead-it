@@ -3,11 +3,18 @@ using System.Collections;
 
 public class Country : MonoBehaviour
 {
+	public GameObject	RatioLab;
+	public GameObject	PopLab;
+	public GameObject	BudgetLab;
+	public GameObject	DayLab;
+	public GameObject	LeadButton;
+
 	// VISIBLE
     private string	CountryName;
     private int		Budget;
     private float	DayRatio;
 	private int		Popularity;
+	private int		DayPast;
 	// INVISIBLE
     private bool	IsDead;
     private float	NextUpdate;
@@ -21,6 +28,7 @@ public class Country : MonoBehaviour
     void Start()
     {
         this.CountryName = "";
+
         this.Budget = 0;
         this.DayRatio = 0.0f;
         this.Profit = 0;
@@ -28,7 +36,7 @@ public class Country : MonoBehaviour
         this.IsDead = false;
 		this.NextUpdate = 0.0f;
 		this.Popularity = 0;
-
+		this.DayPast = 0;
 		// DEBUG
 //		CountryElem[] list = transform.GetComponentsInChildren<CountryElem> ();
 //		foreach (CountryElem elem in list) {
@@ -48,12 +56,12 @@ public class Country : MonoBehaviour
         {
 			if (elem)
 			{
-            	profit += elem.ProfitBonus;
-            	expense += elem.ExpenseMalus;
-            	profit += (this.Budget * elem.ProfitPercent / 100);
-            	expense += (this.Budget * elem.ExpensePercent / 100);
-				this.Popularity += elem.Popularity;
-				this.Budget += elem.Budget;
+            	profit += elem.ProfitBonus * elem.SliderVal;
+            	expense += elem.ExpenseMalus * elem.SliderVal;
+            	profit += (this.Budget * (elem.ProfitPercent * elem.SliderVal) / 100);
+            	expense += (this.Budget * (elem.ExpensePercent * elem.SliderVal) / 100);
+				this.Popularity += (elem.Popularity * elem.SliderVal);
+				this.Budget += (elem.Budget * elem.SliderVal);
 			}
         }
 
@@ -70,12 +78,22 @@ public class Country : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		this.NextUpdate += Time.deltaTime;
+		if (LeadButton == null)
+			this.NextUpdate += Time.deltaTime;
         if (this.NextUpdate > this.UpdateTime)
         {
+			this.DayPast += 7;
             UpdateCountry();
-            this.NextUpdate = 0.0f;
-        }
+			this.NextUpdate = 0.0f;
+			DayLab.GetComponent<UILabel>().text = "Day: " + this.DayPast.ToString();
+			DayLab.GetComponent<UILabel>().UpdateNGUIText();
+			PopLab.GetComponent<UILabel>().text = this.Popularity.ToString() + "%";
+			PopLab.GetComponent<UILabel>().UpdateNGUIText();
+			RatioLab.GetComponent<UILabel>().text = this.DayRatio.ToString() + "%";
+			RatioLab.GetComponent<UILabel>().UpdateNGUIText();
+			BudgetLab.GetComponent<UILabel>().text = this.Budget.ToString() + "$";
+			BudgetLab.GetComponent<UILabel>().UpdateNGUIText();
+		}
     }
 
 	void UpdateSliderVal(string name, int val)

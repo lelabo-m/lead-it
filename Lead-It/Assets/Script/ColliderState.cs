@@ -15,12 +15,9 @@ public class ColliderState : MonoBehaviour {
         Vector2 vect = Camera.main.ScreenToWorldPoint(mousePosition);
 
         Collider2D[] col = Physics2D.OverlapPointAll(vect);
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && col.Length > 0)
         {
-            if (col.Length == 1 && col[0].collider2D.gameObject.name == gameObject.name)
-            {
-                Debug.Log("Collided with : " + gameObject.name);
-            }
+            Debug.Log("Collided with : " + col[0].collider2D.gameObject.name);
         }
 	}
 

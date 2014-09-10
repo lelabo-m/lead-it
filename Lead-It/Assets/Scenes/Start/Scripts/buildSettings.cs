@@ -12,10 +12,5 @@ public class buildSettings : MonoBehaviour {
         Screen.autorotateToLandscapeRight = true;
         Screen.autorotateToPortraitUpsideDown = false;
         Screen.autorotateToPortrait = false;
-
-        // Cursor image, only for Windows
-#if (UNITY_STANDALONE_WIN || UNITY_EDITOR)
-
-#endif
     }
 }

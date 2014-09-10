@@ -4,15 +4,16 @@ using System.Collections;
 public class Country : MonoBehaviour
 {
 
-    private string CountryName;
-    private uint Budget;
-    private float DayRatio;
-    private uint Profit;
-    private uint Expense;
-    private bool IsDead;
-    private float NextUpdate;
-    public uint ExpenseInc;
-    public float UpdateTime;
+    private string	CountryName;
+    private uint	Budget;
+    private float	DayRatio;
+    private uint	Profit;
+    private uint	Expense;
+    private bool	IsDead;
+    private float	NextUpdate;
+	private int	Popularity;
+    public uint 	ExpenseInc;
+    public float	UpdateTime;
 
     // Use this for initialization
     void Start()
@@ -23,7 +24,8 @@ public class Country : MonoBehaviour
         this.Profit = 0;
         this.Expense = 0;
         this.IsDead = false;
-        this.NextUpdate = Time.time + this.UpdateTime;
+		this.NextUpdate = 0.0f;
+		this.Popularity = 0;
     }
 
     // Get all the aid / taxes / invest values to calc the result of the week
@@ -43,12 +45,13 @@ public class Country : MonoBehaviour
             	expense += elem.ExpenseMalus;
             	profit += (this.Budget * elem.ProfitPercent / 100);
             	expense += (this.Budget * elem.ExpensePercent / 100);
+				this.Popularity += elem.Popularity;
 			}
         }
 
         budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
-        if (budget > this.Budget) this.IsDead = true;
+        if (budget > this.Budget || this.Popularity <= 0) this.IsDead = true;
 
         this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
         this.Budget = budget;
@@ -57,10 +60,11 @@ public class Country : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > this.NextUpdate)
+		this.NextUpdate += Time.deltaTime;
+        if (this.NextUpdate > this.UpdateTime)
         {
             UpdateCountry();
-            this.NextUpdate = Time.deltaTime + this.UpdateTime;
+            this.NextUpdate = 0.0f;
         }
     }
 
@@ -85,32 +89,32 @@ public class Country : MonoBehaviour
         this.DayRatio = val;
     }
 
-    uint setBudget()
+    uint getBudget()
     {
         return this.Budget;
     }
 
-    void getBudget(uint val)
+    void setBudget(uint val)
     {
         this.Budget = val;
     }
 
-    uint setProfit()
+    uint getProfit()
     {
         return this.Profit;
     }
 
-    void getProfit(uint val)
+    void setProfit(uint val)
     {
         this.Profit = val;
     }
 
-    uint setExpense()
+    uint getExpense()
     {
         return this.Expense;
     }
 
-    void getExpense(uint val)
+    void setExpense(uint val)
     {
         this.Expense = val;
     }

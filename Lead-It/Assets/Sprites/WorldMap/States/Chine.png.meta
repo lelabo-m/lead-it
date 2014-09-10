@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 388b89a1013801e4ea06241555a5f7be
+=======
+guid: 6262b4108f2f5d747b89c9b1a1fa312f
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Chine

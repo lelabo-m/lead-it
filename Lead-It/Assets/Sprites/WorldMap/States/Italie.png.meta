@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 36b9f3fb087e59b48bf4565b1bfa6292
+=======
+guid: 214aba09306f5e6468dc56461381b65e
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Italie

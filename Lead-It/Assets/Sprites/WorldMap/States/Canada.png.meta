@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d334deb2179c70044994d149b6f14585
+=======
+guid: abe7c6aa3d149af4dbd03bdea854f7bd
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Canada

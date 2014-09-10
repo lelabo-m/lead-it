@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 597a08284d01d7f40b67924206d2b7b9
+=======
+guid: 59552618e20ac5d48b748d5a3d79e366
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Moyen-Orient

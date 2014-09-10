@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b3382836950ed9c4cbb5a1bf25ba3ce0
+=======
+guid: e6a8d1ae9f75e06468b06fde4c650aaf
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Espagne

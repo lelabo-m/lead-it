@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: bc0ed2d6dae6e1a47a8627275c0ee8a7
+=======
+guid: 51ac2ccba0649994091faa666f57e2df
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Mexique

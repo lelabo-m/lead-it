@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7de88935eb682a3458c2b1a8442b5780
+=======
+guid: aedf0ef70ea4ffe4e965dfa427481de6
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Australie

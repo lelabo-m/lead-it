@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 0bfbab605aa91814ca67c2bad2c7c914
+=======
+guid: 675f02837b537634e8ba54a4feaca009
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Amerique-centrale

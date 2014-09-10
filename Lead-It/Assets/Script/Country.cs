@@ -33,12 +33,17 @@ public class Country : MonoBehaviour
         uint expense = this.Expense;
         uint budget = this.Budget;
 
-        foreach (CountryElem elem in FindObjectsOfType(typeof(CountryElem)) as GameObject[])
+		GameObject[]	list = GameObject.FindGameObjectsWithTag("CElem");
+		foreach(GameObject CElem in list)
         {
-            profit += elem.ProfitBonus;
-            expense += elem.ExpenseMalus;
-            profit += (this.Budget * elem.ProfitPercent / 100);
-            expense += (this.Budget * elem.ExpensePercent / 100);
+			CountryElem elem = CElem.GetComponent<CountryElem>();
+			if (elem)
+			{
+            	profit += elem.ProfitBonus;
+            	expense += elem.ExpenseMalus;
+            	profit += (this.Budget * elem.ProfitPercent / 100);
+            	expense += (this.Budget * elem.ExpensePercent / 100);
+			}
         }
 
         budget = budget + profit - expense;

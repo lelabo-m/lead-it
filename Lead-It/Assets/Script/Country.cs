@@ -8,6 +8,10 @@ public class Country : MonoBehaviour {
 	private float		DayRatio;
 	private uint		Profit;
 	private uint		Expense;
+	private bool		IsDead;
+	private float		NextUpdate;
+	public uint			ExpenseInc;
+	public float		UpdateTime;
 
 	// Use this for initialization
 	void Start () {
@@ -16,15 +20,38 @@ public class Country : MonoBehaviour {
 		this.DayRatio = 0.0f;
 		this.Profit = 0;
 		this.Expense = 0;
+		this.IsDead = false;
+		this.NextUpdate = Time.time + this.UpdateTime;
 	}
 
 	// Get all the aid / taxes / invest values to calc the result of the week
 	void UpdateCountry() {
+		uint profit = this.Profit;
+		uint expense = this.Expense;
+		uint budget = this.Budget;
+ 
+		foreach (CountryElem elem in FindObjectsOfType(typeof(CountryElem)) as GameObject[])
+		{
+			profit += elem.ProfitBonus;
+			expense += elem.ExpenseMalus;
+			profit += (this.Budget * elem.ProfitPercent / 100);
+			expense += (this.Budget * elem.ExpensePercent / 100);
+		}
+
+		budget = budget + profit - expense;
+		// Check budget > this.Budget -> End of Game
+		if (budget > this.Budget) this.IsDead = true;
+
+		this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
+		this.Budget = budget;
 	}
 
 	// Update is called once per frame
 	void Update () {
-	
+		if (Time.time > this.NextUpdate) {
+			UpdateCountry();
+			this.NextUpdate = Time.time + this.UpdateTime;
+			}
 	}
 
 	// Getter / Setter
@@ -67,4 +94,8 @@ public class Country : MonoBehaviour {
 	void getExpense(uint val) {
 		this.Expense = val;
 	}	
+
+	bool IsCountryDead() {
+		return this.IsDead;
+	}
 }

@@ -17,6 +17,7 @@ public class CountryElem : MonoBehaviour {
 	public int		ExpenseMalus;
 	public int		ProfitPercent;
 	public int		ExpensePercent;
+	public int		Budget;
 
 
 	// Use this for initialization

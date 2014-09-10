@@ -51,6 +51,7 @@ public class Country : MonoBehaviour
             	profit += (this.Budget * elem.ProfitPercent / 100);
             	expense += (this.Budget * elem.ExpensePercent / 100);
 				this.Popularity += elem.Popularity;
+				this.Budget += elem.Budget;
 			}
         }
 
@@ -60,7 +61,7 @@ public class Country : MonoBehaviour
 						this.IsDead = true;
 						this.Budget = 1;
 				}
-        this.DayRatio = ((budget - this.Budget) * 100) / (this.Budget + 1);
+        this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
         this.Budget = budget;
     }
 

@@ -3,15 +3,17 @@ using System.Collections;
 
 public class Country : MonoBehaviour
 {
-
+	// VISIBLE
     private string	CountryName;
     private int		Budget;
     private float	DayRatio;
-    private int		Profit;
-    private int		Expense;
+	private int		Popularity;
+	// INVISIBLE
     private bool	IsDead;
     private float	NextUpdate;
-	private int		Popularity;
+	private int		Profit;
+	private int		Expense;
+	// PUBLIC
     public int 		ExpenseInc;
     public float	UpdateTime;
 

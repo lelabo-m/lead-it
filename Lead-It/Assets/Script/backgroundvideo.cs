@@ -5,14 +5,14 @@ using System;
 [RequireComponent (typeof (AudioSource))]
 
 public class backgroundvideo : MonoBehaviour {
-	#if UNITY_EDITOR
+	#if (UNITY_EDITOR || UNITY_STANDALONE_WIN)
 		public MovieTexture movie;
 		public GameObject font;
 	#endif
 
 	// Use this for initialization
 	void Start () {
-		#if UNITY_EDITOR
+		#if  (UNITY_EDITOR || UNITY_STANDALONE_WIN)
 		try
 		{
 			renderer.material.mainTexture = movie as MovieTexture;
@@ -22,7 +22,7 @@ public class backgroundvideo : MonoBehaviour {
 			movie.Play ();
 			audio.Play ();
 		}
-		catch (Exception e)
+		catch (Exception)
 		{
 			font.renderer.enabled = true;
 		}

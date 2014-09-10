@@ -9,6 +9,7 @@ public class backgroundvideo : MonoBehaviour {
 		public MovieTexture movie;
 		public GameObject font;
 	#endif
+	public GameObject slider;
 
 	// Use this for initialization
 	void Start() {
@@ -33,5 +34,7 @@ public class backgroundvideo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
+		UISlider plop = slider.GetComponent<UISlider> ();
+		audio.volume = plop.value;
 	}
 }

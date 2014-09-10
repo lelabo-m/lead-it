@@ -11,13 +11,13 @@ public class CountryElem : MonoBehaviour {
 	}
 
 	public ElemType	Etype;
-	public string	Ename;
-	public uint		SliderVal;
-	public uint		ProfitBonus;
-	public uint		ExpenseMalus;
-	public uint		ProfitPercent;
-	public uint		ExpensePercent;
+	public int		SliderVal;
 	public int		Popularity;
+	public int		ProfitBonus;
+	public int		ExpenseMalus;
+	public int		ProfitPercent;
+	public int		ExpensePercent;
+
 
 	// Use this for initialization
 	void Start () {
@@ -27,4 +27,5 @@ public class CountryElem : MonoBehaviour {
 	void Update () {
 	// Update sliderval
 	}
+	
 }

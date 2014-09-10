@@ -5,14 +5,14 @@ public class Country : MonoBehaviour
 {
 
     private string	CountryName;
-    private uint	Budget;
+    private int		Budget;
     private float	DayRatio;
-    private uint	Profit;
-    private uint	Expense;
+    private int		Profit;
+    private int		Expense;
     private bool	IsDead;
     private float	NextUpdate;
 	private int		Popularity;
-    public uint 	ExpenseInc;
+    public int 		ExpenseInc;
     public float	UpdateTime;
 
     // Use this for initialization
@@ -26,19 +26,24 @@ public class Country : MonoBehaviour
         this.IsDead = false;
 		this.NextUpdate = 0.0f;
 		this.Popularity = 0;
+
+		// DEBUG
+//		CountryElem[] list = transform.GetComponentsInChildren<CountryElem> ();
+//		foreach (CountryElem elem in list) {
+//			Debug.Log(elem.Etype);
+//				}
     }
 
     // Get all the aid / taxes / invest values to calc the result of the week
     void UpdateCountry()
     {
-        uint profit = this.Profit;
-        uint expense = this.Expense;
-        uint budget = this.Budget;
+        int profit = this.Profit;
+        int expense = this.Expense;
+        int budget = this.Budget;
 
-		GameObject[]	list = GameObject.FindGameObjectsWithTag("CElem");
-		foreach(GameObject CElem in list)
+		CountryElem[] list = transform.GetComponentsInChildren<CountryElem> ();
+		foreach(CountryElem elem in list)
         {
-			CountryElem elem = CElem.GetComponent<CountryElem>();
 			if (elem)
 			{
             	profit += elem.ProfitBonus;
@@ -51,9 +56,11 @@ public class Country : MonoBehaviour
 
         budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
-        if (budget > this.Budget || this.Popularity <= 0) this.IsDead = true;
-
-        this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
+        if (budget > this.Budget || this.Popularity <= 0) {
+						this.IsDead = true;
+						this.Budget = 1;
+				}
+        this.DayRatio = ((budget - this.Budget) * 100) / (this.Budget + 1);
         this.Budget = budget;
     }
 
@@ -67,6 +74,20 @@ public class Country : MonoBehaviour
             this.NextUpdate = 0.0f;
         }
     }
+
+	void UpdateSliderVal(string name, int val)
+	{
+		GameObject child = this.transform.FindChild (name).gameObject;
+		CountryElem elem = child.GetComponent<CountryElem> ();
+		elem.SliderVal = val;
+	}
+
+	int GetSliderVal(string name)
+	{
+		GameObject child = this.transform.FindChild (name).gameObject;
+		CountryElem elem = child.GetComponent<CountryElem> ();
+		return elem.SliderVal;
+	}
 
     // Getter / Setter
     string getName()
@@ -89,32 +110,32 @@ public class Country : MonoBehaviour
         this.DayRatio = val;
     }
 
-    uint getBudget()
+    int getBudget()
     {
         return this.Budget;
     }
 
-    void setBudget(uint val)
+    void setBudget(int val)
     {
         this.Budget = val;
     }
 
-    uint getProfit()
+    int getProfit()
     {
         return this.Profit;
     }
 
-    void setProfit(uint val)
+    void setProfit(int val)
     {
         this.Profit = val;
     }
 
-    uint getExpense()
+    int getExpense()
     {
         return this.Expense;
     }
 
-    void setExpense(uint val)
+    void setExpense(int val)
     {
         this.Expense = val;
     }

@@ -11,7 +11,7 @@ public class Country : MonoBehaviour
     private uint	Expense;
     private bool	IsDead;
     private float	NextUpdate;
-	private int	Popularity;
+	private int		Popularity;
     public uint 	ExpenseInc;
     public float	UpdateTime;
 

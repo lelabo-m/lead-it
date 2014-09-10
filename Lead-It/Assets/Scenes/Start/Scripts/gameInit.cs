@@ -39,7 +39,8 @@ public class gameInit : MonoBehaviour {
                            "North Korea",
                            "South Korea",
                            "Japan",
-                           "Australia"};
+							"Australia",
+							"Scandinavia"};
         this.country = new List<string>(country_);
         // Continent list
         string[] continentName_ = { "America",
@@ -66,6 +67,7 @@ public class gameInit : MonoBehaviour {
         this.continent.Add(this.country[14], this.continentName[3]);
         this.continent.Add(this.country[15], this.continentName[3]);
         this.continent.Add(this.country[16], this.continentName[4]);
+        this.continent.Add(this.country[17], this.continentName[1]);
     }
 
     void Awake()

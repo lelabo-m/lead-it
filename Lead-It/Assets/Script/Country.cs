@@ -50,7 +50,7 @@ public class Country : MonoBehaviour {
 	void Update () {
 		if (Time.time > this.NextUpdate) {
 			UpdateCountry();
-			this.NextUpdate = Time.time + this.UpdateTime;
+			this.NextUpdate = Time.deltaTime + this.UpdateTime;
 			}
 	}
 

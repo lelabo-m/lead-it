@@ -20,8 +20,6 @@ public class ColliderState : MonoBehaviour
 
             if (color)
                 color.Toggle();
-
-            Debug.Log("Collided with : " + col[0].collider2D.gameObject.name);
         }
     }
 

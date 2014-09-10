@@ -15,6 +15,7 @@ public class ColliderState : MonoBehaviour
         {
             GameObject selected = col[0].collider2D.gameObject;
 
+            col[0].collider2D.gameObject.renderer.enabled = true;
             var color = selected.GetComponent<TweenColor>();
 
             if (color)

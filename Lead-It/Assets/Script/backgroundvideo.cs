@@ -4,16 +4,21 @@ using System.Collections;
 [RequireComponent (typeof (AudioSource))]
 
 public class backgroundvideo : MonoBehaviour {
-
-	public MovieTexture movie;
+	#if UNITY_EDITOR
+		public MovieTexture movie;
+	#endif
 
 	// Use this for initialization
 	void Start () {
-		renderer.material.mainTexture = movie as MovieTexture;
-		audio.clip = movie.audioClip;
-		movie.loop = true;
-		movie.Play ();
-		audio.Play ();
+		#if UNITY_EDITOR
+			renderer.material.mainTexture = movie as MovieTexture;
+			audio.clip = movie.audioClip;
+			movie.loop = true;
+			movie.Play ();
+			audio.Play ();
+		#else
+			Handheld.PlayFullScreenMovie ("StreamingAssests/gen-lead.mp4", Color.black, FullScreenMovieControlMode.CancelOnInput);
+		#endif
 	}
 	
 	// Update is called once per frame

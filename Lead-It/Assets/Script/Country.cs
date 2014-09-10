@@ -93,57 +93,57 @@ public class Country : MonoBehaviour
 	}
 
     // Getter / Setter
-    string getName()
+	public string getName()
     {
         return this.CountryName;
     }
 
-    void setName(string name)
+	public void setName(string name)
     {
         this.CountryName = name;
     }
 
-    float getDayRatio()
+	public float getDayRatio()
     {
         return this.DayRatio;
     }
 
-    void setDayRatio(float val)
+	public void setDayRatio(float val)
     {
         this.DayRatio = val;
     }
 
-    int getBudget()
+	public int getBudget()
     {
         return this.Budget;
     }
 
-    void setBudget(int val)
+	public void setBudget(int val)
     {
         this.Budget = val;
     }
 
-    int getProfit()
+	public int getProfit()
     {
         return this.Profit;
     }
 
-    void setProfit(int val)
+	public void setProfit(int val)
     {
         this.Profit = val;
     }
 
-    int getExpense()
+	public int getExpense()
     {
         return this.Expense;
     }
 
-    void setExpense(int val)
+	public void setExpense(int val)
     {
         this.Expense = val;
     }
 
-    bool IsCountryDead()
+	public bool IsCountryDead()
     {
         return this.IsDead;
     }

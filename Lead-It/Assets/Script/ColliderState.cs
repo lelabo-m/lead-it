@@ -6,6 +6,9 @@ public class ColliderState : MonoBehaviour
 	public GameObject CountryController;
 	public GameObject LeadButton;
 	public Camera MainCamera;
+	public GameObject Pays;
+	public GameObject Title;
+
     // Pon = PreviousObjectName
     // Pos = PreviousObjectSelected
     string Pon = "";
@@ -27,7 +30,10 @@ public class ColliderState : MonoBehaviour
 		LeadButton.SetActive (false);
 		GameObject.DestroyImmediate (LeadButton);
         Debug.Log("Country selected : " + Pon);
-
+		Country data = Pays.GetComponent<Country> ();
+		data.setName(Pon);
+		Title.GetComponent<UILabel> ().text = Pon;
+		Title.GetComponent<UILabel> ().UpdateNGUIText ();
     }
 
     void Update()

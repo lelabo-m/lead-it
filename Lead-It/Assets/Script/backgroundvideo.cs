@@ -18,6 +18,7 @@ public class backgroundvideo : MonoBehaviour {
 			renderer.material.mainTexture = movie as MovieTexture;
 			audio.clip = movie.audioClip;
 			movie.loop = true;
+			font.renderer.enabled = false;
 			movie.Play ();
 			audio.Play ();
 		}

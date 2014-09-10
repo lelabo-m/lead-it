@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 367c551191133c244bf1889396368c0c
+=======
+guid: a93f3d85c7f0b134d9bb95f6bbef1393
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Allemagne

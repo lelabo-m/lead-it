@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: c74dc60f0dfcf9d42bd1256a3409bda0
+=======
+guid: 2b808327c15f2a745a72fe549a98ea0b
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Asie-du-Sud-Est

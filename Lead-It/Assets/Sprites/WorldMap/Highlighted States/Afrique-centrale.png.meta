@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 0cae55530d7e6ba4b8b2253de1e1c062
+=======
+guid: 7ea3cafbe26d98848926835867f98f59
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Afrique-centrale

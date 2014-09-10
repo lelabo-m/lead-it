@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 964a2fbe77708684d93fbbad3c64568d
+=======
+guid: fdf4eedddca01a94f987b72a0e66f27a
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Inde

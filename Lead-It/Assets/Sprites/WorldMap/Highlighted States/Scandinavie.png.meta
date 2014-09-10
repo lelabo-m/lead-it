@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3dce782aab735c847b763b941af68c62
+=======
+guid: 7116eaa4ad238694aae5ab9f0eec2127
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Scandinavie

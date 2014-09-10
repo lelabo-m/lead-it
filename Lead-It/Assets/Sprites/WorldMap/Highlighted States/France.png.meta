@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 4f501f50f8c8a6a47b6d9fa95e88fe76
+=======
+guid: c4e7512f9c4e1c94b9fb66939b0e2b4d
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: France

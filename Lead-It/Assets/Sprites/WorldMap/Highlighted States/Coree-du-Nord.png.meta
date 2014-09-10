@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 5e574643f23fa044e8bfb9a6f5be47aa
+=======
+guid: c5e2f4906d34bd84a9b654f704583f8b
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Coree-du-Nord

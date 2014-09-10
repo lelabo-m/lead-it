@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 4eb147a9fb0b70443b3797b374358b1c
+=======
+guid: dbc0008e2ab6fa94aa7324c35c015b9c
+>>>>>>> origin/master
 TextureImporter:
   fileIDToRecycleName:
     21300000: Maghreb

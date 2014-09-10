@@ -67,4 +67,9 @@ public class gameInit : MonoBehaviour {
         this.continent.Add(this.country[15], this.continentName[3]);
         this.continent.Add(this.country[16], this.continentName[4]);
     }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 }

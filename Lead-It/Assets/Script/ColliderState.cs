@@ -5,7 +5,6 @@ public class ColliderState : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        renderer = GetComponent<Renderer>();
 	}
 	
 	// Update is called once per frame

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 [RequireComponent (typeof (AudioSource))]
 
@@ -20,7 +21,7 @@ public class backgroundvideo : MonoBehaviour {
 			movie.Play ();
 			audio.Play ();
 		}
-		catch (UnityException e)
+		catch (Exception e)
 		{
 			font.renderer.enabled = true;
 		}

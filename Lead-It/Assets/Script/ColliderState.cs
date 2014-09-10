@@ -6,7 +6,15 @@ public class ColliderState : MonoBehaviour
     // Pon = PreviousObjectName
     // Pos = PreviousObjectSelected
     string Pon = "";
-    GameObject pos;
+    GameObject Pos;
+    GameObject ConfirmButton;
+
+    void Start()
+    {
+        ConfirmButton = GameObject.Find("Validate_button");
+        if (ConfirmButton)
+            NGUITools.SetActive(ConfirmButton, false);
+    }
 
     void Update()
     {
@@ -19,11 +27,13 @@ public class ColliderState : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // Désactive la surbrillance du dernier object selectionné
-            GameObject Pos = GameObject.Find(Pon);
+            Pos = GameObject.Find(Pon);
+
             if (Pos)
-            {
                 Pos.renderer.enabled = false;
-            }
+
+            if (ConfirmButton)
+                NGUITools.SetActive(ConfirmButton, false);
 
             if (col.Length > 0)
             {
@@ -34,6 +44,9 @@ public class ColliderState : MonoBehaviour
 
                 if (color)
                     color.Toggle();
+
+                if (ConfirmButton)
+                    NGUITools.SetActive(ConfirmButton, true);
 
                 Pon = selected.name;
             }

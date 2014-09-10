@@ -32,16 +32,11 @@ public class ColliderState : MonoBehaviour
                 selected.renderer.enabled = true;
                 var color = selected.GetComponent<TweenColor>();
 
-<<<<<<< HEAD
-            if (color)
-                color.Toggle();
-=======
                 if (color)
                     color.Toggle();
 
                 Pon = selected.name;
             }
->>>>>>> b582adc8a9b32f77d070520872ece532a96483ed
         }
     }
 

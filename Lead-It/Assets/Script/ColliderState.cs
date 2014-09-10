@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ColliderState : MonoBehaviour
 {
+	public GameObject CountryController;
+	public GameObject LeadButton;
+	public Camera MainCamera;
     // Pon = PreviousObjectName
     // Pos = PreviousObjectSelected
     string Pon = "";
@@ -17,7 +20,14 @@ public class ColliderState : MonoBehaviour
 
     public void CountrySelected()
     {
+		CountryController.SetActive (true);
+		MainCamera.transform.position = GameObject.Find (Pon).transform.position;
+		MainCamera.transform.Translate (0, 0, -10);
+		MainCamera.orthographicSize = 2.6f;
+		LeadButton.SetActive (false);
+		GameObject.DestroyImmediate (LeadButton);
         Debug.Log("Country selected : " + Pon);
+
     }
 
     void Update()
@@ -28,7 +38,7 @@ public class ColliderState : MonoBehaviour
         Vector2 vect = Camera.main.ScreenToWorldPoint(mousePosition);
 
         Collider2D[] col = Physics2D.OverlapPointAll(vect);
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && LeadButton != null)
         {
             // Désactive la surbrillance du dernier object selectionné
             

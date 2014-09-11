@@ -14,7 +14,7 @@ public class Country : MonoBehaviour
     private string		CountryName;
     private decimal		Budget;
     private float		DayRatio;
-	private float		Popularity;
+	private decimal		Popularity;
 	private decimal		DayPast;
 	// INVISIBLE
     private bool		IsDead;
@@ -38,11 +38,6 @@ public class Country : MonoBehaviour
 		this.NextUpdate = 0.0f;
 		this.Popularity = 0;
 		this.DayPast = 0;
-		// DEBUG
-//		CountryElem[] list = transform.GetComponentsInChildren<CountryElem> ();
-//		foreach (CountryElem elem in list) {
-//			Debug.Log(elem.Etype);
-//				}
     }
 
     // Get all the aid / taxes / invest values to calc the result of the week
@@ -68,11 +63,15 @@ public class Country : MonoBehaviour
 
 		Debug.Log ("Expense .: " + expense + " Profit :" + profit);
         
+		// Fix popularity level
+		if (this.Popularity > 100) this.Popularity = 100;
+
 		budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
         if (budget > this.Budget || this.Popularity <= 0) {
 						this.IsDead = true;
 						this.Budget = 1;
+
 				}
 
 		// Taux de croissance

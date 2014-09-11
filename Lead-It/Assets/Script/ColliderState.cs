@@ -56,7 +56,6 @@ public class ColliderState : MonoBehaviour
         {
             // Désactive la surbrillance du dernier object selectionné
             
-
             if (col.Length > 0)
             {
                 GameObject selected = col[0].collider2D.gameObject;

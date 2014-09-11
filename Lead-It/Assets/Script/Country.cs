@@ -5,11 +5,12 @@ using System.Linq;
 
 public class Country : MonoBehaviour
 {
-	public GameObject	RatioLab;
-	public GameObject	PopLab;
-	public GameObject	BudgetLab;
-	public GameObject	DayLab;
-	public GameObject	LeadButton;
+	public GameObject		RatioLab;
+	public GameObject		PopLab;
+	public GameObject		BudgetLab;
+	public GameObject		DayLab;
+	public GameObject		LeadButton;
+	public LastScoreCompo	score;
 
 	// VISIBLE
     private string		CountryName;
@@ -54,15 +55,17 @@ public class Country : MonoBehaviour
 			if (elem)
 			{
             	profit += elem.ProfitBonus * (elem.SliderVal / 10);
-            	expense += elem.ExpenseMalus * (elem.SliderVal / 10);
-            	profit += (this.Budget * (elem.ProfitPercent * (elem.SliderVal / 10)) / 100);
+				this.Profit += elem.ProfitBonus * (elem.SliderVal / 10);
+				expense += elem.ExpenseMalus * (elem.SliderVal / 10);
+				this.Expense += elem.ExpenseMalus * (elem.SliderVal / 10);
+				profit += (this.Budget * (elem.ProfitPercent * (elem.SliderVal / 10)) / 100);
             	expense += (this.Budget * (elem.ExpensePercent * (elem.SliderVal / 10)) / 100);
 				this.Popularity += (elem.Popularity * (elem.SliderVal / 10));
 				this.Budget += (elem.Budget * (elem.SliderVal / 10));
 			}
         }
 
-		//Debug.Log ("Expense .: " + expense + " Profit :" + profit);
+		Debug.Log ("Expense .: " + expense + " Profit :" + profit);
         
 		// Fix popularity level
 		if (this.Popularity > 100) this.Popularity = 100;
@@ -72,11 +75,12 @@ public class Country : MonoBehaviour
 
 		budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
-        if (budget > this.Budget || this.Popularity <= 0) {
+        if (budget > this.Budget || this.Popularity <= 0)
+		{
 						this.IsDead = true;
 						this.Budget = 1;
-
-				}
+			Application.LoadLevel(4);
+		}
 
 		// Taux de croissance
         //this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
@@ -113,7 +117,6 @@ public class Country : MonoBehaviour
 	public void UpdateSliderVal(string name, int val)
 	{
 		GameObject child = GameObject.Find (name);
-		Debug.Log (name);
 		if (child == null) return ;
 		CountryElem elem = child.GetComponent<CountryElem> ();
 		elem.SliderVal = val;

@@ -14,7 +14,7 @@ public class Country : MonoBehaviour
     private string		CountryName;
     private decimal		Budget;
     private float		DayRatio;
-	private float		Popularity;
+	private decimal		Popularity;
 	private decimal		DayPast;
 	// INVISIBLE
     private bool		IsDead;

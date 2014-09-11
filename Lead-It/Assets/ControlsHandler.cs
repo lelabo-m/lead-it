@@ -26,16 +26,16 @@ public class ControlsHandler : MonoBehaviour
         foreach (string str in list)
         {
             AidValues.Add(str, 0.0f);
-            SliderAidChanged();
         }
+        PopupListAidChanged();
 
         list = PopupListTaxes.GetComponent<UIPopupList>().items;
 
         foreach (string str in list)
         {
             TaxesValues.Add(str, 0.0f);
-            SliderTaxesChanged();
         }
+        PopupListTaxesChanged();
     }
 
     public void SetAllValues(Dictionary<string, uint> taxesValues
@@ -49,7 +49,7 @@ public class ControlsHandler : MonoBehaviour
     {
         string val = PopupListAid.GetComponent<UIPopupList>().value;
 
-        if (AidValues[val] != null)
+        if (AidValues != null && AidValues.ContainsKey(val) == true)
         {
             if (AidSlider.GetComponent<UISlider>() != null)
                 AidSlider.GetComponent<UISlider>().value = AidValues[val];
@@ -69,7 +69,7 @@ public class ControlsHandler : MonoBehaviour
     {
         string val = PopupListTaxes.GetComponent<UIPopupList>().value;
 
-        if (TaxesValues[val] != null)
+        if (TaxesValues != null && TaxesValues.ContainsKey(val) == true)
         {
             if (TaxesSlider.GetComponent<UISlider>() != null)
                 TaxesSlider.GetComponent<UISlider>().value = TaxesValues[val];

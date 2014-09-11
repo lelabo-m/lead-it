@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Linq;
 
 public class Country : MonoBehaviour
 {
-	public GameObject	RatioLab;
-	public GameObject	PopLab;
-	public GameObject	BudgetLab;
-	public GameObject	DayLab;
-	public GameObject	LeadButton;
+	public GameObject		RatioLab;
+	public GameObject		PopLab;
+	public GameObject		BudgetLab;
+	public GameObject		DayLab;
+	public GameObject		LeadButton;
+	public LastScoreCompo	score;
 
 	// VISIBLE
     private string		CountryName;
@@ -38,11 +40,6 @@ public class Country : MonoBehaviour
 		this.NextUpdate = 0.0f;
 		this.Popularity = 0;
 		this.DayPast = 0;
-		// DEBUG
-//		CountryElem[] list = transform.GetComponentsInChildren<CountryElem> ();
-//		foreach (CountryElem elem in list) {
-//			Debug.Log(elem.Etype);
-//				}
     }
 
     // Get all the aid / taxes / invest values to calc the result of the week
@@ -57,30 +54,45 @@ public class Country : MonoBehaviour
         {
 			if (elem)
 			{
-            	profit += elem.ProfitBonus * (elem.SliderVal / 10);
-            	expense += elem.ExpenseMalus * (elem.SliderVal / 10);
-            	profit += (this.Budget * (elem.ProfitPercent * (elem.SliderVal / 10)) / 100);
+				profit += (this.Profit * (Convert.ToDecimal(elem.ProfitBonus) * (elem.SliderVal / 10)) / 100);
+				this.Profit += (this.Profit * (Convert.ToDecimal(elem.ProfitBonus) * (elem.SliderVal / 10)) / 100);
+				expense += (this.Expense * (Convert.ToDecimal(elem.ExpenseMalus) * (elem.SliderVal / 10)) / 100);
+				this.Expense += (this.Expense * (Convert.ToDecimal(elem.ExpenseMalus) * (elem.SliderVal / 10)) / 100);
+				profit += (this.Budget * (elem.ProfitPercent * (elem.SliderVal / 10)) / 100);
             	expense += (this.Budget * (elem.ExpensePercent * (elem.SliderVal / 10)) / 100);
 				this.Popularity += (elem.Popularity * (elem.SliderVal / 10));
-				this.Budget += (elem.Budget * (elem.SliderVal / 10));
+				budget += (this.Budget * (Convert.ToDecimal(elem.Budget) * (elem.SliderVal / 10)) / 100);
 			}
         }
 
 		Debug.Log ("Expense .: " + expense + " Profit :" + profit);
         
+		// Fix popularity level
+		if (this.Popularity > 100) this.Popularity = 100;
+
+		// Fix Floating exception
+		if (expense < 1 && expense > -1) expense = 1;
+
 		budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
-        if (budget > this.Budget || this.Popularity <= 0) {
+        if (budget < 0 || this.Popularity <= 10)
+		{
 						this.IsDead = true;
 						this.Budget = 1;
-				}
+			score.SetDay(this.DayPast);
+			score.SetCountry(this.CountryName);
+			score.SetDie(1);
+			if(budget < 0) score.SetDie(0);
+			Application.LoadLevel(3);
+		}
 
 		// Taux de croissance
         //this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
 		decimal tmp = (profit - expense) * 100;
-		this.DayRatio = (float)Math.Round(Convert.ToDouble(tmp / expense), 2);
+		this.DayRatio = (float)Math.Round (Convert.ToDouble (tmp / expense), 2);
 
-        this.Budget = budget;
+		this.Budget = budget;
+		this.Budget = (decimal)Math.Round (Convert.ToDouble (this.Budget), 2);
 		this.Expense += this.ExpenseInc;
     }
 
@@ -105,9 +117,10 @@ public class Country : MonoBehaviour
 		}
     }
 
-	public void UpdateSliderVal(string name, decimal val)
+	public void UpdateSliderVal(string name, int val)
 	{
-		GameObject child = this.transform.FindChild (name).gameObject;
+		GameObject child = GameObject.Find (name);
+		if (child == null) return ;
 		CountryElem elem = child.GetComponent<CountryElem> ();
 		elem.SliderVal = val;
 	}

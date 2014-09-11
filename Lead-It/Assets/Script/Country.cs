@@ -54,14 +54,14 @@ public class Country : MonoBehaviour
         {
 			if (elem)
 			{
-            	profit += elem.ProfitBonus * (elem.SliderVal / 10);
-				this.Profit += elem.ProfitBonus * (elem.SliderVal / 10);
-				expense += elem.ExpenseMalus * (elem.SliderVal / 10);
-				this.Expense += elem.ExpenseMalus * (elem.SliderVal / 10);
+				profit += (this.Profit * (Convert.ToDecimal(elem.ProfitBonus) * (elem.SliderVal / 10)) / 100);
+				this.Profit += (this.Profit * (Convert.ToDecimal(elem.ProfitBonus) * (elem.SliderVal / 10)) / 100);
+				expense += (this.Expense * (Convert.ToDecimal(elem.ExpenseMalus) * (elem.SliderVal / 10)) / 100);
+				this.Expense += (this.Expense * (Convert.ToDecimal(elem.ExpenseMalus) * (elem.SliderVal / 10)) / 100);
 				profit += (this.Budget * (elem.ProfitPercent * (elem.SliderVal / 10)) / 100);
             	expense += (this.Budget * (elem.ExpensePercent * (elem.SliderVal / 10)) / 100);
 				this.Popularity += (elem.Popularity * (elem.SliderVal / 10));
-				this.Budget += (elem.Budget * (elem.SliderVal / 10));
+				budget += (this.Budget * (Convert.ToDecimal(elem.Budget) * (elem.SliderVal / 10)) / 100);
 			}
         }
 
@@ -79,6 +79,10 @@ public class Country : MonoBehaviour
 		{
 						this.IsDead = true;
 						this.Budget = 1;
+			score.SetDay(this.DayPast);
+			score.SetCountry(this.CountryName);
+			score.SetDie(0);
+			if(budget < 0) score.SetDie(1);
 			Application.LoadLevel(3);
 		}
 

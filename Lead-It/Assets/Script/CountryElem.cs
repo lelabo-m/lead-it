@@ -13,8 +13,8 @@ public class CountryElem : MonoBehaviour {
 	public ElemType	Etype;
 	public int		SliderVal;
 	public int		Popularity;
-	public int		ProfitBonus;
-	public int		ExpenseMalus;
+	public float		ProfitBonus;
+	public float		ExpenseMalus;
 	public int		ProfitPercent;
 	public int		ExpensePercent;
 	public int		Budget;

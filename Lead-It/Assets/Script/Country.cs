@@ -81,8 +81,8 @@ public class Country : MonoBehaviour
 						this.Budget = 1;
 			score.SetDay(this.DayPast);
 			score.SetCountry(this.CountryName);
-			score.SetDie(0);
-			if(budget < 0) score.SetDie(1);
+			score.SetDie(1);
+			if(budget < 0) score.SetDie(0);
 			Application.LoadLevel(3);
 		}
 
@@ -90,7 +90,6 @@ public class Country : MonoBehaviour
         //this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
 		decimal tmp = (profit - expense) * 100;
 		this.DayRatio = (float)Math.Round (Convert.ToDouble (tmp / expense), 2);
-		this.DayRatio = 0.0f;
 
 		this.Budget = budget;
 		this.Budget = (decimal)Math.Round (Convert.ToDouble (this.Budget), 2);

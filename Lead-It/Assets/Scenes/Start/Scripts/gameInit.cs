@@ -39,8 +39,8 @@ public class gameInit : MonoBehaviour {
                            "North Korea",
                            "South Korea",
                            "Japan",
-							"Australia",
-							"Scandinavia"};
+                           "Australia",
+                           "Scandinavia"};
         this.country = new List<string>(country_);
         // Continent list
         string[] continentName_ = { "America",

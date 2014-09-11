@@ -75,7 +75,7 @@ public class Country : MonoBehaviour
 
 		budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
-        if (budget < 0 || this.Popularity <= 0)
+        if (budget < 0 || this.Popularity <= 10)
 		{
 						this.IsDead = true;
 						this.Budget = 1;

@@ -11,13 +11,13 @@ public class CountryElem : MonoBehaviour {
 	}
 
 	public ElemType	Etype;
-	public decimal		SliderVal;
-	public decimal		Popularity;
-	public decimal		ProfitBonus;
-	public decimal		ExpenseMalus;
-	public decimal		ProfitPercent;
-	public decimal		ExpensePercent;
-	public decimal		Budget;
+	public int		SliderVal;
+	public int		Popularity;
+	public int		ProfitBonus;
+	public int		ExpenseMalus;
+	public int		ProfitPercent;
+	public int		ExpensePercent;
+	public int		Budget;
 
 
 	// Use this for initialization

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Linq;
 
 public class Country : MonoBehaviour
 {
@@ -83,7 +84,8 @@ public class Country : MonoBehaviour
 		this.DayRatio = (float)Math.Round (Convert.ToDouble (tmp / expense), 2);
 		this.DayRatio = 0.0f;
 
-        this.Budget = budget;
+		this.Budget = budget;
+		this.Budget = (decimal)Math.Round (Convert.ToDouble (this.Budget), 2);
 		this.Expense += this.ExpenseInc;
     }
 
@@ -108,7 +110,7 @@ public class Country : MonoBehaviour
 		}
     }
 
-	public void UpdateSliderVal(string name, decimal val)
+	public void UpdateSliderVal(string name, int val)
 	{
 		GameObject child = GameObject.Find (name);
 		Debug.Log (name);

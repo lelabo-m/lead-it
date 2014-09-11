@@ -62,7 +62,9 @@ public class ControlsHandler : MonoBehaviour
 
         AidValues[val] = AidSlider.GetComponent<UISlider>().value;
 
-        CountryScript.UpdateSliderVal("A-" + val, Convert.ToInt32(AidValues[val] * 100));
+		if (AidValues != null && AidValues.ContainsKey (val) == true) {
+						CountryScript.UpdateSliderVal ("A-" + val, Convert.ToInt32 (AidValues [val] * 100));
+				}
     }
 
     public void PopupListTaxesChanged()

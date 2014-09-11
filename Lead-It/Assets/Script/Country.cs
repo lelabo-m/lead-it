@@ -61,7 +61,7 @@ public class Country : MonoBehaviour
 			}
         }
 
-		Debug.Log ("Expense .: " + expense + " Profit :" + profit);
+		//Debug.Log ("Expense .: " + expense + " Profit :" + profit);
         
 		// Fix popularity level
 		if (this.Popularity > 100) this.Popularity = 100;
@@ -110,7 +110,9 @@ public class Country : MonoBehaviour
 
 	public void UpdateSliderVal(string name, decimal val)
 	{
-		GameObject child = this.transform.FindChild (name).gameObject;
+		GameObject child = GameObject.Find (name);
+		Debug.Log (name);
+		if (child == null) return ;
 		CountryElem elem = child.GetComponent<CountryElem> ();
 		elem.SliderVal = val;
 	}

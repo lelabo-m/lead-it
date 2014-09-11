@@ -75,11 +75,11 @@ public class Country : MonoBehaviour
 
 		budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
-        if (budget > this.Budget || this.Popularity <= 0)
+        if (budget < 0 || this.Popularity <= 0)
 		{
 						this.IsDead = true;
 						this.Budget = 1;
-			Application.LoadLevel(4);
+			Application.LoadLevel(3);
 		}
 
 		// Taux de croissance

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Country : MonoBehaviour
 {
@@ -10,19 +11,19 @@ public class Country : MonoBehaviour
 	public GameObject	LeadButton;
 
 	// VISIBLE
-    private string	CountryName;
-    private int		Budget;
-    private float	DayRatio;
-	private int		Popularity;
-	private int		DayPast;
+    private string		CountryName;
+    private decimal		Budget;
+    private float		DayRatio;
+	private decimal		Popularity;
+	private decimal		DayPast;
 	// INVISIBLE
-    private bool	IsDead;
-    private float	NextUpdate;
-	private int		Profit;
-	private int		Expense;
+    private bool		IsDead;
+    private float		NextUpdate;
+	private decimal		Profit;
+	private decimal		Expense;
 	// PUBLIC
-    public int 		ExpenseInc;
-    public float	UpdateTime;
+    public decimal 		ExpenseInc;
+    public float		UpdateTime;
 
     // Use this for initialization
     void Start()
@@ -47,33 +48,37 @@ public class Country : MonoBehaviour
     // Get all the aid / taxes / invest values to calc the result of the week
     void UpdateCountry()
     {
-        int profit = this.Profit;
-        int expense = this.Expense;
-        int budget = this.Budget;
+        decimal profit = this.Profit;
+        decimal expense = this.Expense;
+        decimal budget = this.Budget;
 
 		CountryElem[] list = transform.GetComponentsInChildren<CountryElem> ();
 		foreach(CountryElem elem in list)
         {
 			if (elem)
 			{
-            	profit += elem.ProfitBonus * elem.SliderVal;
-            	expense += elem.ExpenseMalus * elem.SliderVal;
-            	profit += (this.Budget * (elem.ProfitPercent * elem.SliderVal) / 100);
-            	expense += (this.Budget * (elem.ExpensePercent * elem.SliderVal) / 100);
-				this.Popularity += (elem.Popularity * elem.SliderVal);
-				this.Budget += (elem.Budget * elem.SliderVal);
+            	profit += elem.ProfitBonus * (elem.SliderVal / 10);
+            	expense += elem.ExpenseMalus * (elem.SliderVal / 10);
+            	profit += (this.Budget * (elem.ProfitPercent * (elem.SliderVal / 10)) / 100);
+            	expense += (this.Budget * (elem.ExpensePercent * (elem.SliderVal / 10)) / 100);
+				this.Popularity += (elem.Popularity * (elem.SliderVal / 10));
+				this.Budget += (elem.Budget * (elem.SliderVal / 10));
 			}
         }
+
 		Debug.Log ("Expense .: " + expense + " Profit :" + profit);
-        budget = budget + profit - expense;
+        
+		budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
         if (budget > this.Budget || this.Popularity <= 0) {
 						this.IsDead = true;
 						this.Budget = 1;
 				}
+
 		// Taux de croissance
         //this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
-		this.DayRatio = ((profit - expense) * 100) / expense;
+		decimal tmp = (profit - expense) * 100;
+		this.DayRatio = (float)Math.Round(Convert.ToDouble(tmp / expense), 2);
 
         this.Budget = budget;
 		this.Expense += this.ExpenseInc;
@@ -100,14 +105,14 @@ public class Country : MonoBehaviour
 		}
     }
 
-	public void UpdateSliderVal(string name, int val)
+	public void UpdateSliderVal(string name, decimal val)
 	{
 		GameObject child = this.transform.FindChild (name).gameObject;
 		CountryElem elem = child.GetComponent<CountryElem> ();
 		elem.SliderVal = val;
 	}
 
-	public int GetSliderVal(string name)
+	public decimal GetSliderVal(string name)
 	{
 		GameObject child = this.transform.FindChild (name).gameObject;
 		CountryElem elem = child.GetComponent<CountryElem> ();
@@ -135,42 +140,42 @@ public class Country : MonoBehaviour
         this.DayRatio = val;
     }
 
-	public int getBudget()
+	public decimal getBudget()
 	{
 		return this.Budget;
 	}
 	
-	public void setBudget(int val)
+	public void setBudget(decimal val)
 	{
 		this.Budget = val;
 	}
 
-	public int getPopularity()
+	public decimal getPopularity()
 	{
 		return this.Popularity;
 	}
 	
-	public void setPopularity(int val)
+	public void setPopularity(decimal val)
 	{
 		this.Popularity = val;
 	}
 
-	public int getProfit()
+	public decimal getProfit()
     {
         return this.Profit;
     }
 
-	public void setProfit(int val)
+	public void setProfit(decimal val)
     {
         this.Profit = val;
     }
 
-	public int getExpense()
+	public decimal getExpense()
     {
         return this.Expense;
     }
 
-	public void setExpense(int val)
+	public void setExpense(decimal val)
     {
         this.Expense = val;
     }

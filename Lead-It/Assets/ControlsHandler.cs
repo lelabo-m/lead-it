@@ -11,6 +11,8 @@ public class ControlsHandler : MonoBehaviour
     public GameObject PopupListTaxes;
     public GameObject TaxesSlider;
 
+    public Country CountryScript;
+
     public Dictionary<string, float> TaxesValues;
     public Dictionary<string, float> AidValues;
 
@@ -57,6 +59,8 @@ public class ControlsHandler : MonoBehaviour
         string val = PopupListAid.GetComponent<UIPopupList>().value;
 
         AidValues[val] = AidSlider.GetComponent<UISlider>().value;
+
+        CountryScript.UpdateSliderVal("A-" + val, Convert.ToInt32(AidValues[val] * 100));
     }
 
     public void PopupListTaxesChanged()
@@ -75,5 +79,7 @@ public class ControlsHandler : MonoBehaviour
         string val = PopupListTaxes.GetComponent<UIPopupList>().value;
 
         TaxesValues[val] = TaxesSlider.GetComponent<UISlider>().value;
+
+        CountryScript.UpdateSliderVal("T-" + val, Convert.ToInt32(TaxesValues[val] * 100));
     }
 }

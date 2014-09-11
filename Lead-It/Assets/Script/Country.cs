@@ -100,14 +100,14 @@ public class Country : MonoBehaviour
 		}
     }
 
-	void UpdateSliderVal(string name, int val)
+	public void UpdateSliderVal(string name, int val)
 	{
 		GameObject child = this.transform.FindChild (name).gameObject;
 		CountryElem elem = child.GetComponent<CountryElem> ();
 		elem.SliderVal = val;
 	}
 
-	int GetSliderVal(string name)
+	public int GetSliderVal(string name)
 	{
 		GameObject child = this.transform.FindChild (name).gameObject;
 		CountryElem elem = child.GetComponent<CountryElem> ();

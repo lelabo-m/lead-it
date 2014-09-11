@@ -3,11 +3,12 @@ using System.Collections;
 
 public class ColliderState : MonoBehaviour
 {
-	public GameObject CountryController;
-	public GameObject LeadButton;
-	public Camera MainCamera;
-	public GameObject Pays;
-	public GameObject Title;
+	public GameObject	CountryController;
+	public GameObject	LeadButton;
+	public Camera		MainCamera;
+	public GameObject	Pays;
+	public GameObject	Title;
+	public GameObject	Map;
 
     // Pon = PreviousObjectName
     // Pos = PreviousObjectSelected
@@ -31,7 +32,14 @@ public class ColliderState : MonoBehaviour
 		GameObject.DestroyImmediate (LeadButton);
         Debug.Log("Country selected : " + Pon);
 		Country data = Pays.GetComponent<Country> ();
+		GameObject Mapchild = Map.transform.FindChild (Pon).gameObject;
+		CountryResources Mapdata = Mapchild.GetComponent<CountryResources> ();
 		data.setName(Pon);
+		data.setBudget(Mapdata.Budget);
+		data.setPopularity (Mapdata.Popularity);
+		data.setProfit (Mapdata.Profit);
+		data.setExpense (Mapdata.Expense);
+		data.ExpenseInc = Mapdata.ExpenseInc;
 		Title.GetComponent<UILabel> ().text = Pon;
 		Title.GetComponent<UILabel> ().UpdateNGUIText ();
     }

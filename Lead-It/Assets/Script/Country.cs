@@ -64,15 +64,18 @@ public class Country : MonoBehaviour
 				this.Budget += (elem.Budget * elem.SliderVal);
 			}
         }
-
+		Debug.Log ("Expense .: " + expense + " Profit :" + profit);
         budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
         if (budget > this.Budget || this.Popularity <= 0) {
 						this.IsDead = true;
 						this.Budget = 1;
 				}
+		// Taux de croissance
         this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
+
         this.Budget = budget;
+		this.Expense += this.ExpenseInc;
     }
 
     // Update is called once per frame
@@ -132,14 +135,24 @@ public class Country : MonoBehaviour
     }
 
 	public int getBudget()
-    {
-        return this.Budget;
-    }
-
+	{
+		return this.Budget;
+	}
+	
 	public void setBudget(int val)
-    {
-        this.Budget = val;
-    }
+	{
+		this.Budget = val;
+	}
+
+	public int getPopularity()
+	{
+		return this.Popularity;
+	}
+	
+	public void setPopularity(int val)
+	{
+		this.Popularity = val;
+	}
 
 	public int getProfit()
     {

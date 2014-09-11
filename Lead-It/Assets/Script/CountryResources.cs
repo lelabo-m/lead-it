@@ -6,6 +6,7 @@ public class CountryResources : MonoBehaviour {
 	public int	Budget;
 	public int	Profit;
 	public int	Expense;
+	public int	ExpenseInc;
 	public int	Popularity;
 
 	// Use this for initialization

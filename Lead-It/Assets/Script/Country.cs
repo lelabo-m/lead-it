@@ -66,6 +66,9 @@ public class Country : MonoBehaviour
 		// Fix popularity level
 		if (this.Popularity > 100) this.Popularity = 100;
 
+		// Fix Floating exception
+		if (expense < 1 && expense > -1) expense = 1;
+
 		budget = budget + profit - expense;
         // Check budget > this.Budget -> End of Game
         if (budget > this.Budget || this.Popularity <= 0) {
@@ -77,7 +80,8 @@ public class Country : MonoBehaviour
 		// Taux de croissance
         //this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
 		decimal tmp = (profit - expense) * 100;
-		this.DayRatio = (float)Math.Round(Convert.ToDouble(tmp / expense), 2);
+		this.DayRatio = (float)Math.Round (Convert.ToDouble (tmp / expense), 2);
+		this.DayRatio = 0.0f;
 
         this.Budget = budget;
 		this.Expense += this.ExpenseInc;

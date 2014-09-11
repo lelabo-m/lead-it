@@ -7,6 +7,6 @@ public class DaysLabel : MonoBehaviour
 
     void Start()
     {
-        this.gameObject.GetComponent<UILabel>().text = "You successfully managed during\n" + scores.GetDay().ToString() + " Days";
+        this.gameObject.GetComponent<UILabel>().text = "You successfully governed during\n" + scores.GetDay().ToString() + " Days";
     }
 }

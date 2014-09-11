@@ -72,7 +72,8 @@ public class Country : MonoBehaviour
 						this.Budget = 1;
 				}
 		// Taux de croissance
-        this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
+        //this.DayRatio = ((budget - this.Budget) * 100) / this.Budget;
+		this.DayRatio = ((profit - expense) * 100) / expense;
 
         this.Budget = budget;
 		this.Expense += this.ExpenseInc;

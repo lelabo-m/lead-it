@@ -26,6 +26,7 @@ public class ControlsHandler : MonoBehaviour
         foreach (string str in list)
         {
             AidValues.Add(str, 0.0f);
+            SliderAidChanged();
         }
 
         list = PopupListTaxes.GetComponent<UIPopupList>().items;
@@ -33,6 +34,7 @@ public class ControlsHandler : MonoBehaviour
         foreach (string str in list)
         {
             TaxesValues.Add(str, 0.0f);
+            SliderTaxesChanged();
         }
     }
 
